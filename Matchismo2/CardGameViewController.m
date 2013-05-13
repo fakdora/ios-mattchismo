@@ -9,32 +9,23 @@
 #import "CardGameViewController.h"
 #import "PlayingCardDeck.h" 
 #import "CardMatchingGame.h"
+#import "GameResults.h"
+#import "GameViewController.h"
 
 @interface CardGameViewController ()
-@property (weak, nonatomic) IBOutlet UILabel *flipsLabel;
-@property (nonatomic) int flipCount;
-@property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 
-// order of the buttons in the Array are undetermined.
-@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
-@property (weak, nonatomic) IBOutlet UILabel *statusLabel;
-@property (strong, nonatomic) CardMatchingGame *game;
 @end
 
 @implementation CardGameViewController
 
+@synthesize game = _game;
+
 
 - (CardMatchingGame *)game
 {
-    if (!_game) _game = [[CardMatchingGame alloc] initWithCardCount:self.cardButtons.count usingDeck:[[PlayingCardDeck alloc] init]];
+    if (!_game) _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count] usingDeck:[[PlayingCardDeck alloc] init]];
     
     return _game;
-}
-
-- (void)setCardButtons:(NSArray *)cardButtons
-{
-    _cardButtons = cardButtons;
-    [self updateUI];
 }
 
 - (void)updateUI
@@ -53,20 +44,10 @@
 }
 - (IBAction)dealButton:(UIButton *)sender {
     self.game = nil;
+    self.gameResult = nil;
     self.flipCount = 0;
     [self updateUI];
 }
 
-- (void)setFlipCount:(int)flipCount
-{
-    _flipCount = flipCount;
-    self.flipsLabel.text = [NSString stringWithFormat:@"Flips: %d", self.flipCount];
-}
-
-- (IBAction)flipCard:(UIButton *)sender {
-    [self.game flipCardAtIndex:[self.cardButtons indexOfObject:sender]];
-    self.flipCount++;
-    [self updateUI];
-}
 
 @end

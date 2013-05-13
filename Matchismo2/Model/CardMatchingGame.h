@@ -21,4 +21,9 @@
 @property (nonatomic, readonly) NSString *descriptionOfLastFlip;
 @property (nonatomic, readonly) int score;
 
+@property (nonatomic) int cardMatchNumber;
+@property (nonatomic) int matchBonus;
+@property (nonatomic) int mismatchPenalty;
+@property (nonatomic) int flipCost;
+
 @end
