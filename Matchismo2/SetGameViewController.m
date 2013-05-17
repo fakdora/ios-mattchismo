@@ -22,7 +22,7 @@
 - (CardMatchingGame *)game
 {
     if (!_game) {
-        _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count] usingDeck:[[SetDeck alloc] init]];
+        _game = [[CardMatchingGame alloc] initWithCardCount:self.startingCardCount usingDeck:[[SetDeck alloc] init]];
         self.game.cardMatchNumber = 3;
     }
     
@@ -33,6 +33,7 @@
 
 - (void)updateUI
 {
+    /*
     for (UIButton *cardButton in self.cardButtons) {
         Card *card = [self.game cardAtIndex:[self.cardButtons indexOfObject:cardButton]];
         //[cardButton setTitle:card.contents forState:UIControlStateSelected];
@@ -47,8 +48,8 @@
         //cardButton.selected = card.isFaceUp;
         cardButton.enabled = !card.isUnplayable;
         cardButton.alpha = (card.isUnplayable ? 0.3 : 1.0);
-        
     }
+     */
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
     self.statusLabel.text = self.game.descriptionOfLastFlip;
 }

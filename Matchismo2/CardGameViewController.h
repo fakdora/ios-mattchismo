@@ -7,6 +7,7 @@
 //
 
 #import "GameViewController.h"
+#import "Deck.h"
 
 @interface CardGameViewController : GameViewController
 

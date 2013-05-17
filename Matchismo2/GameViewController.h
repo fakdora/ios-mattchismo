@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "CardMatchingGame.h"
 #import "GameResults.h"
+#import "Deck.h"
 
 @interface GameViewController : UIViewController
 // order of the buttons in the Array are undetermined.
-@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
+
 @property (strong, nonatomic) CardMatchingGame *game;
 @property (weak, nonatomic) IBOutlet UILabel *flipsLabel;
 
@@ -22,5 +23,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *dealButton;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
+
+- (Deck *)createDeck; // abstract
+@property (nonatomic) NSUInteger startingCardCount; // abstract
 
 @end

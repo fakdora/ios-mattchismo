@@ -10,24 +10,32 @@
 
 
 @interface GameViewController ()
+@property (weak, nonatomic) IBOutlet UICollectionView *cardCollectionView;
 
 @end
 
 @implementation GameViewController
 
 
+@synthesize startingCardCount = _startingCardCount;
+
+- (CardMatchingGame *)game
+{
+    if (!_game) _game = [[CardMatchingGame alloc] initWithCardCount:self.startingCardCount
+                                                          usingDeck:[self createDeck]];
+    return _game;
+}
+
+- (Deck *)createDeck
+{
+    return nil;
+}
 
 - (GameResults *)gameResult
 {
     if (!_gameResult)
         _gameResult = [[GameResults alloc] init];
     return _gameResult;
-}
-
-- (void)setCardButtons:(NSArray *)cardButtons
-{
-    _cardButtons = cardButtons;
-    [self updateUI];
 }
 
 - (void)updateUI
@@ -42,7 +50,8 @@
 }
 
 - (IBAction)flipCard:(UIButton *)sender {
-    [self.game flipCardAtIndex:[self.cardButtons indexOfObject:sender]];
+    int index = 0; // ???
+    [self.game flipCardAtIndex:index];
     self.flipCount++;
     [self updateUI];
     //self.gameResult.score = self.game.score;
